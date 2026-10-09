@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class AnalitzadorPrincipal {
     public static void main(String[] args) {
-        ProcessBuilder pb = new ProcessBuilder("java", "FiltreLog");
+        ProcessBuilder pb = new ProcessBuilder("java", "-cp", "./build/classes/", "cat.paucasesnovescifp.loganalyzer.FiltreLog");
         try {
             Process process = pb.start();
             BufferedReader in = process.inputReader();
