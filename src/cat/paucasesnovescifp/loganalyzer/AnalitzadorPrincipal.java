@@ -19,10 +19,7 @@ WARNING: Hello, error?""";
             BufferedReader in = process.inputReader();
             BufferedWriter out = process.outputWriter();
             
-            for(String line : testTxt.split("\n")) {
-                out.write(line + "\n");
-            }
-            out.write(";\n");
+            out.write(testTxt+"\n;\n");
             out.flush();
             process.waitFor();
             System.out.println(in.readLine());
