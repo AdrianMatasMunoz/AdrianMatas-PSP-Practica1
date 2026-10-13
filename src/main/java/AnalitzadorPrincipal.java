@@ -1,4 +1,4 @@
-package cat.paucasesnovescifp.loganalyzer;
+
 
 // Procés Pare!
 
@@ -11,8 +11,8 @@ public class AnalitzadorPrincipal {
     public static void main(String[] args) {
         String testTxt = "ERROR: File not found.\nLOG: Hello, world!\nWARNING: Hello, error?\nWARNING: Check error output and warning output files.";
         
-        ProcessBuilder pbErr = new ProcessBuilder("java", "-cp", "./target/classes/", "cat.paucasesnovescifp.loganalyzer.FiltreLog", "ERROR");
-        ProcessBuilder pbWarn = new ProcessBuilder("java", "-cp", "./target/classes/", "cat.paucasesnovescifp.loganalyzer.FiltreLog", "WARNING");
+        ProcessBuilder pbErr = new ProcessBuilder("java", "-cp", System.getProperty("java.class.path"), "FiltreLog", "ERROR");
+        ProcessBuilder pbWarn = new ProcessBuilder("java", "-cp", System.getProperty("java.class.path"), "FiltreLog", "WARNING");
         try {
             Process processErr = pbErr.start();
             Process processWarn = pbWarn.start();

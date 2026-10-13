@@ -1,4 +1,4 @@
-package cat.paucasesnovescifp.loganalyzer;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,7 +12,9 @@ public class FiltreLog {
         try(BufferedReader input = new BufferedReader(new InputStreamReader(System.in))) {
             int wordCount = 0;
             String curLine;
+            boolean hasRanLoop = false;
             while((curLine = input.readLine()) != null) {
+                hasRanLoop = true;
                 if(curLine.length() == 0) {
                     throw new IOException("Error: Text buit");
                 }
@@ -22,6 +24,10 @@ public class FiltreLog {
                         wordCount++;
                     }
                 }
+            }
+            
+            if(!hasRanLoop) {
+                throw new IOException("Error: Text buit");
             }
             
             System.out.println(wordCount);
