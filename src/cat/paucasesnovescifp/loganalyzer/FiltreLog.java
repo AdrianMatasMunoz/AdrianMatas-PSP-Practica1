@@ -8,25 +8,27 @@ import java.util.ArrayList;
 // Procés Fill!
 public class FiltreLog {
     public static void main(String[] args) {
+        String countedWord = args.length > 0 ? args[0] : "ERROR";
         try(BufferedReader input = new BufferedReader(new InputStreamReader(System.in))) {
-            int errorCount = 0;
-            ArrayList<String> logs = new ArrayList<>();
-            String inputLine = input.readLine();
-            while(!inputLine.equals(";")) {
-                logs.add(inputLine);
-                inputLine = input.readLine();
-            }
-            
-            for(String curLine : logs) {
+            int wordCount = 0;
+            String curLine;
+            while((curLine = input.readLine()) != null) {
+                if(curLine.length() == 0) {
+                    throw new IOException("Error: Text buit");
+                }
+                
                 for(String word : curLine.split(" ")) {
-                    if(word.toLowerCase().contains("error")) {
-                        errorCount++;
+                    if(word.toLowerCase().contains(countedWord.toLowerCase())) {
+                        wordCount++;
                     }
                 }
             }
-            System.out.println(errorCount);
+            
+            System.out.println(wordCount);
+            System.exit(0);
         } catch(IOException ex) {
-            System.err.println("Error llegint l'input.");
+            System.err.println(ex.getMessage());
+            System.exit(1);
         }
     }
 }
